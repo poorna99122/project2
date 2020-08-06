@@ -29,6 +29,15 @@ package com.upgrad.ublog.servlets;
  * TODO: 5.6: Remove the same mapping from the Deployment Descriptor otherwise, you will get an error.
  */
 
+import com.upgrad.ublog.dto.UserDTO;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 /**
  * TODO: 6.16. When the user click on the Sign In button on the Sign In/ Sign Up page, handle the
  *  following scenarios. (Hint: Use ServiceFactory to get UserService. Override the init() method
@@ -53,6 +62,45 @@ package com.upgrad.ublog.servlets;
  *   message stored in the exception object and display the same message on the index.jsp page.
  */
 
-public class UserServlet {
+public class UserServlet extends HttpServlet {
+    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        PrintWriter pw = resp.getWriter();
+        resp.setContentType("text/html");
 
+        String actionType = req.getParameter("actionType");
+        String email = req.getParameter("email");
+        String password = req.getParameter("pw");
+        //String action = req.getParameter("actionType");
+
+        if(password.equals(" ") || password.equals(null)){
+            pw.println("Password is a required field");
+            req.getRequestDispatcher("/index.jsp").forward(req, resp);
+        }
+        /*else if(password == null){
+            pw.println("Password is a required field");
+            req.getRequestDispatcher("/index.jsp").forward(req, resp);
+        }*/
+
+
+
+        UserDTO userDTO = new UserDTO();
+        userDTO.setEmailId(email);
+        userDTO.setPassword(password);
+
+        switch (actionType) {
+            case "Sign In":
+            case "Sign Up":
+                try {
+
+                    req.getRequestDispatcher("/Home.jsp").forward(req, resp);
+                } catch (Exception e) {
+                    req.setAttribute("isError", true);
+                    req.setAttribute("error", e.getMessage());
+                    req.getRequestDispatcher("/index.jsp").forward(req, resp);
+                }
+                break;
+
+        }
+
+    }
 }

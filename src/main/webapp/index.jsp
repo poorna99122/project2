@@ -27,7 +27,33 @@
             and make this field required.
         7. Use the table tag to align the labels and text fields.
         8. Provide "Sign In" and "Sign Up" submit buttons.
+
 -->
+
+<html>
+<body>
+<form action="/Home.jsp" method="post">
+
+
+
+    <tr>
+        <td><%--@declare id="email"--%><label for="email"><b>Email</b></label></td>
+        <td><input type="text" placeholder="Enter email" name="email" required></td>
+    </tr><br>
+
+    <tr>
+        <td><%--@declare id="pw"--%><label for="pw"><b>Password</b></label><td>
+        <td><input type="password" placeholder="********" name="pw" required><td>
+    </tr><br><br>
+
+    <button type="submit"value="Sign In" name="actionType"/>Sign in</button>
+    <button type="submit"value="Sign Up" name="actionType"/>Sign up</button>
+</form>
+</body>
+</html>
+
+
+
 
 <!--
     TODO: 4.12. Write the Java code to display the error message present in the request object. The

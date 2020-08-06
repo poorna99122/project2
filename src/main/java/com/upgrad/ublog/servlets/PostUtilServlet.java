@@ -42,6 +42,8 @@ package com.upgrad.ublog.servlets;
  *   to the request object.
  */
 
+import javax.servlet.Servlet;
+
 /**
  * TODO: 7.29. If the request is coming from the Filter.jsp page, then do the following:
  *  1. Retrieve the tag from the request object.
