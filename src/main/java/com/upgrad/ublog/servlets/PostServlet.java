@@ -40,6 +40,8 @@ package com.upgrad.ublog.servlets;
  *  Print the "System.getProperty("user.dir")" to know where the log file is created.
  */
 
+import javax.servlet.http.HttpServlet;
+
 /**
  * TODO 9.1: Modify the existing code such that the following two operations occur simultaneously on
  *  two independent threads.
@@ -47,6 +49,7 @@ package com.upgrad.ublog.servlets;
  *  thread2: Writing logs into the file
  */
 
-public class PostServlet extends Object {
+public class PostServlet extends HttpServlet {
+
 
 }

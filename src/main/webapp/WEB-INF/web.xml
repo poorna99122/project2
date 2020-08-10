@@ -11,27 +11,18 @@
   -->
 
       <servlet>
-
-        <servlet-name>UserServlet</servlet-name>
-        <servlet-class>com.upgrad.ublog.servlets.UserServlet</servlet-class>
+            <servlet-name>UserServlet</servlet-name>
+            <servlet-class>com.upgrad.ublog.servlets.UserServlet</servlet-class>
       </servlet>
   <servlet-mapping>
-    <servlet-name>UserServlet</servlet-name>
-    <url-pattern>/ublog/user</url-pattern>
+            <servlet-name>UserServlet</servlet-name>
+            <url-pattern>/ublog/user</url-pattern>
   </servlet-mapping>
 
-  <servlet>
-    <servlet-name>PostServlet</servlet-name>
-
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>PostServlet</servlet-name>
-    <url-pattern>/ublog/post</url-pattern>
-  </servlet-mapping>
 
    <servlet>
      <servlet-name>PostUtilServlet</servlet-name>
-
+      <servlet-class>com.upgrad.ublog.servlets.PostUtilServlet</servlet-class>
    </servlet>
   <servlet-mapping>
     <servlet-name>PostUtilServlet</servlet-name>

@@ -31,25 +31,42 @@
 -->
 
 <html>
-<body>
-<form action="/Home.jsp" method="post">
+ <head>
+     <title>Sign In / Sign Up</title>
+ </head>
+
+     <body>
+     <form method="post" action="/ublog/user">
+         <table>
+             <tr>
+                 <td><%--@declare id="emailid"--%><label for="emailId">User Email:</label></td>
+                 <td><input type="text" placeholder="example@gmail.com" required="required" name="emailId"/></td>
+             </tr>
+             <tr>
+                 <td><%--@declare id="password"--%><label for="password">Password:</label></td>
+                 <td><input type="password" placeholder="*********" required="required" name="password"/></td>
+             </tr>
+         </table>
+
+           <input type="submit" value="Sign In" name="actionType"/>
+           <input type="submit" value="Sign Up" name="actionType"/>
+          <br><br>
+          <%
+              try{
+                  if((Boolean) request.getAttribute("isError")){
+                      out.println(request.getAttribute("errorMessage"));
+                  }
+              }
+              catch(NullPointerException e){
+
+              }
+
+          %>
+     </form>
+     </body>
 
 
 
-    <tr>
-        <td><%--@declare id="email"--%><label for="email"><b>Email</b></label></td>
-        <td><input type="text" placeholder="Enter email" name="email" required></td>
-    </tr><br>
-
-    <tr>
-        <td><%--@declare id="pw"--%><label for="pw"><b>Password</b></label><td>
-        <td><input type="password" placeholder="********" name="pw" required><td>
-    </tr><br><br>
-
-    <button type="submit"value="Sign In" name="actionType"/>Sign in</button>
-    <button type="submit"value="Sign Up" name="actionType"/>Sign up</button>
-</form>
-</body>
 </html>
 
 

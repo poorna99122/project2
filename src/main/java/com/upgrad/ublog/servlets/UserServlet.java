@@ -35,6 +35,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -64,43 +65,39 @@ import java.io.PrintWriter;
 
 public class UserServlet extends HttpServlet {
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        PrintWriter pw = resp.getWriter();
-        resp.setContentType("text/html");
+        HttpSession httpSession = req.getSession();
+        if(httpSession.getAttribute("emailId")!=null){
+            resp.sendRedirect("Home.jsp");
+            return;
+        }
+        //PrintWriter pw = resp.getWriter();
+        //resp.setContentType("text/html");
 
         String actionType = req.getParameter("actionType");
-        String email = req.getParameter("email");
-        String password = req.getParameter("pw");
+        String emailId = req.getParameter("emailId");
+        String password = req.getParameter("password");
         //String action = req.getParameter("actionType");
 
-        if(password.equals(" ") || password.equals(null)){
-            pw.println("Password is a required field");
+        if(password.equals("")){
+            req.setAttribute("isError",true);
+            req.setAttribute("errorMessage","Password is a required field");
             req.getRequestDispatcher("/index.jsp").forward(req, resp);
+            return;
         }
-        /*else if(password == null){
-            pw.println("Password is a required field");
-            req.getRequestDispatcher("/index.jsp").forward(req, resp);
-        }*/
+     if(actionType.equals("Sign In")){
+
+         httpSession.setAttribute("emailId",emailId);
+         //System.out.println();
+     }
+     else{
+         UserDTO userDTO = new UserDTO();
+         userDTO.setEmailId(emailId);
+         userDTO.setPassword(password);
+         httpSession.setAttribute("emailId",emailId);
+     }
 
 
-
-        UserDTO userDTO = new UserDTO();
-        userDTO.setEmailId(email);
-        userDTO.setPassword(password);
-
-        switch (actionType) {
-            case "Sign In":
-            case "Sign Up":
-                try {
-
-                    req.getRequestDispatcher("/Home.jsp").forward(req, resp);
-                } catch (Exception e) {
-                    req.setAttribute("isError", true);
-                    req.setAttribute("error", e.getMessage());
-                    req.getRequestDispatcher("/index.jsp").forward(req, resp);
-                }
-                break;
 
         }
 
     }
-}

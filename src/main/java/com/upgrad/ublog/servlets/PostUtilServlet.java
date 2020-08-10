@@ -43,6 +43,7 @@ package com.upgrad.ublog.servlets;
  */
 
 import javax.servlet.Servlet;
+import javax.servlet.http.HttpServlet;
 
 /**
  * TODO: 7.29. If the request is coming from the Filter.jsp page, then do the following:
@@ -58,6 +59,6 @@ import javax.servlet.Servlet;
  *   to the request object.
  */
 
-public class PostUtilServlet {
+public class PostUtilServlet extends HttpServlet {
 
 }
